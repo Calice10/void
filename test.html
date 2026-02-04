@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>💖</title>
+
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at top, #ff4fd8, #12001f 65%);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow:
+      0 0 10px #ff4fd8,
+      0 0 20px #ff4fd8,
+      0 0 40px #8f00ff;
+  }
+
+  .gif {
+    width: 420px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 30px #ff4fd8);
+  }
+
+  /* ZONE DE JEU DES BOUTONS */
+  .buttons-zone {
+    position: relative;
+    width: 600px;
+    height: 180px;
+  }
+
+  button {
+    position: absolute;
+    padding: 16px 45px;
+    font-size: 22px;
+    border-radius: 30px;
+    border: 2px solid #ff4fd8;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    box-shadow:
+      0 0 10px #ff4fd8,
+      0 0 25px #8f00ff;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Est-ce que tu veux être ma copine sorciere ? 💖</h1>
+
+<img
+  class="gif"
+  src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3c5bnFvaXVoZnE0MTB1ampuN3J4dDN6a2dvNWhwbzMzMTVqdjE0cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MQVpBqASxSlFu/giphy.gif"
+  alt="chat qui embrasse"
+/>
+
+<div class="buttons-zone" id="zone">
+  <button id="oui">Oui</button>
+  <button id="non">Non</button>
+</div>
+
+<script>
+  const zone = document.getElementById("zone");
+  const buttons = document.querySelectorAll("button");
+
+  function centerButtons() {
+    const zoneWidth = zone.clientWidth;
+    const zoneHeight = zone.clientHeight;
+
+    document.getElementById("oui").style.left = (zoneWidth / 2 - 150) + "px";
+    document.getElementById("oui").style.top = (zoneHeight / 2 - 25) + "px";
+
+    document.getElementById("non").style.left = (zoneWidth / 2 + 20) + "px";
+    document.getElementById("non").style.top = (zoneHeight / 2 - 25) + "px";
+  }
+
+  function flee(btn) {
+    const maxX = zone.clientWidth - btn.offsetWidth;
+    const maxY = zone.clientHeight - btn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+  }
+
+  centerButtons();
+
+  buttons.forEach(btn => {
+    btn.addEventListener("mouseenter", () => flee(btn));
+  });
+</script>
+
+</body>
+</html>
